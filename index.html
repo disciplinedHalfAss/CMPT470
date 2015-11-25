@@ -79,7 +79,7 @@
           <div class='col-xs-12 col-sm-2'>
             <select class="form-control input-sm search-select" 
                 ng-model="selectedSortOption" 
-                ng-options="option.name for option in sortOptions" 
+                ng-options="option.name for option in sortOptions track by option.id" 
                 ng-change="sortOrder()">
             </select>
           </div>
@@ -91,7 +91,7 @@
     <div class='container' ng-controller="booksIndexCtrl" id='bookCollection'>
       <div class='row'>
       
-      <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in books | orderBy:valueFunction()">
+      <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in books | orderBy:books_order_by">
         <div class="thumbnail">
         <img src="http://placehold.it/320x150" alt="">
         <div class="caption">
