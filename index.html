@@ -9,6 +9,17 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link rel="stylesheet" href="./index.css">
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript Angularjs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <!-- Latest compiled and minified JavaScript angular routes -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <!-- app brain -->
+    <script src="./app.js"></script>
   </head>
   <body ng-app="mainApp">
     
@@ -77,10 +88,10 @@
     </div>
     
     <!-- collection -->
-    <div class='container' ng-controller="booksIndexCtrl as collection" id='bookCollection'>
+    <div class='container' ng-controller="booksIndexCtrl" id='bookCollection'>
       <div class='row'>
       
-      <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in collection.books | orderBy:collection.valueFunction()">
+      <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in books | orderBy:valueFunction()">
         <div class="thumbnail">
         <img src="http://placehold.it/320x150" alt="">
         <div class="caption">
@@ -90,8 +101,8 @@
           <h4>Owners Score</h4>
           <p class="pull-right">{{book.numberOfReviews}} reviews</p>
           <p>
-            <span class="glyphicon glyphicon-star" ng-repeat="i in collection.getStars(book.ownersRating) track by $index"></span>
-            <span class="glyphicon glyphicon-star-empty" ng-repeat="i in  collection.getEmptyStars(book.ownersRating) track by $index"></span>
+            <span class="glyphicon glyphicon-star" ng-repeat="i in getStars(book.ownersRating) track by $index"></span>
+            <span class="glyphicon glyphicon-star-empty" ng-repeat="i in getEmptyStars(book.ownersRating) track by $index"></span>
           </p>
           </div>
         </div>
@@ -100,18 +111,5 @@
       
       </div>
     </div>
-    
-    	  
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Latest compiled and minified JavaScript Bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified JavaScript Angularjs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <!-- Latest compiled and minified JavaScript angular routes -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
-    
-    <script src="./app.js"></script>
-    
   </body>
 </html>
