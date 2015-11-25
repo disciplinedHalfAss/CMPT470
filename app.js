@@ -171,18 +171,10 @@ angular.module('mainApp', ['ui.router'])
 	}
 	
 }])
-
-
-
-
-//From Book Module--------------------------------------------
-
-
-.controller('StoreController', ['$stateParams', 'books', function(books, $stateParams) {
-  this.pooh = $stateParams.id;
-  this.product = books.books[0];
+// Books view
+.controller('StoreController', ['$stateParams', 'books', function($stateParams, books) {
+  this.product = books.books[$stateParams.id];
 }])
-
 .controller("TabController", [function() {
   this.tab = 1;
 
@@ -194,7 +186,6 @@ angular.module('mainApp', ['ui.router'])
     this.tab = setTab;
   };
 }])
-
 .controller('GalleryController', [function(){
   this.current = 0;
 
@@ -202,7 +193,6 @@ angular.module('mainApp', ['ui.router'])
     this.current = imageNumber || 0;
   };
 }])
-
 .controller("ReviewController", [function(){
 
   this.review = {};
@@ -212,18 +202,3 @@ angular.module('mainApp', ['ui.router'])
     this.review = {};
   };
 }])
-
-// var books = {
-//     name: 'Pinciples of Mathematical Analysis',
-//     description: "Hi, I am description",
-//     author: "Walter Rudin",
-//     isbn: 987654321099,
-//     price: 110.50,
-//     edition: 2,
-//     images: [
-//       "http://d.gr-assets.com/books/1339192336l/292079.jpg",
-//       "http://ecx.images-amazon.com/images/I/41QkrgV1BhL._SY344_BO1,204,203,200_.jpg",
-//       "http://ecx.images-amazon.com/images/I/31w4IxdgYbL._SY344_BO1,204,203,200_.jpg"
-//     ]
-//   };
-
