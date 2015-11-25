@@ -1,0 +1,41 @@
+body {
+    background-image: url("./assets/images/bg3.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#options{
+	position: fixed;
+	z-index: 1;
+	top: 50px;
+	
+	padding-top: 10px;
+	padding-bottom: 0px;
+	
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	background-color: rgba(133, 94, 66, 0.8);
+}
+#options .row{
+	margin-bottom: 10px;
+}
+@media all and (max-width: 768px){
+	#options{
+		position: relative;
+	}
+	#options .search-select{
+		margin-bottom: 10px;
+	}
+}
+#bookCollection{
+	margin-top: 110px;
+}
+select{
+  background-color: hsl(201, 100%, 40%) !important;
+	border-radius: 1px;
+	border-color: #0084cc hsl(201, 100%, 40%) !important;
+	color: white !important;
+	font-weight: bold !important;
+}
