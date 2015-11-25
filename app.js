@@ -16,7 +16,7 @@ angular.module('mainApp', ['ui.router'])
       .state('book', {
         url: '/book/{id}',
         templateUrl: 'book.html',
-        controller: 'BookCtrl'
+        controller: 'StoreController'
       });
 
        $urlRouterProvider.otherwise('home');
@@ -178,8 +178,9 @@ angular.module('mainApp', ['ui.router'])
 //From Book Module--------------------------------------------
 
 
-.controller('StoreController', '$stateParams', ['books', function(books, $stateParams) {
-  this.product = books.books[$stateParams.id];
+.controller('StoreController', ['$stateParams', 'books', function(books, $stateParams) {
+  this.pooh = $stateParams.id;
+  this.product = books.books[0];
 }])
 
 .controller("TabController", [function() {
