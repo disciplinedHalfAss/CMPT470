@@ -1,4 +1,38 @@
-angular.module('mainApp', [])
+angular.module('mainApp', ['ui.router'])
+
+.config([
+
+  '$stateProvider',
+  '$urlRouterProvider',
+
+  function($stateProvider, $urlRouterProvider){
+    $stateProvider
+      .state('home', {
+        url: '/home',
+        templateUrl: 'home.html',
+        controller: 'HomeCtrl'
+      })
+
+      .state('book', {
+        url: '/book/{id}',
+        templateUrl: 'book.html',
+        controller: 'BookCtrl'
+      });
+
+       $urlRouterProvider.otherwise('home');
+  }
+
+  ])
+
+
+.controller('HomeCtrl', [function(){
+
+}])
+
+.controller('BookCtrl', [function(){
+  
+}])
+
 .factory('search',[function(){
   var o = {
     	universities: [
@@ -25,7 +59,9 @@ angular.module('mainApp', [])
       {
         id: 0, 
         name: "James Bond", 
-        edition: '1st',
+        edition: 1,
+        author:"Alireza",
+        isbn:21367,
         price: '70',
         tags: ['asGoodAsNew'],
         ownersRating: 1, 
@@ -34,7 +70,9 @@ angular.module('mainApp', [])
       {
         id: 1, 
         name: "Code Geass",
-        edition: '3rd', 
+        edition: 3,
+        author:"",
+        isbn:21367, 
         price: '88', 
         tags: ['alright'],
         ownersRating: 3, 
@@ -43,7 +81,9 @@ angular.module('mainApp', [])
       {
         id: 2, 
         name: "NginX",
-        edition: '2nd', 
+        edition: 2,
+        author:"",
+        isbn:21367, 
         price: '200', 
         tags: ['myPrecious'],
         ownersRating: 5, 
@@ -131,3 +171,58 @@ angular.module('mainApp', [])
 	}
 	
 }])
+
+
+
+
+//From Book Module--------------------------------------------
+
+
+.controller('StoreController', '$stateParams', ['books', function(books, $stateParams) {
+  this.product = books.books[$stateParams.id];
+}])
+
+.controller("TabController", [function() {
+  this.tab = 1;
+
+  this.isSet = function(checkTab) {
+    return this.tab === checkTab;
+  };
+
+  this.setTab = function(setTab) {
+    this.tab = setTab;
+  };
+}])
+
+.controller('GalleryController', [function(){
+  this.current = 0;
+
+  this.setCurrent = function(imageNumber){
+    this.current = imageNumber || 0;
+  };
+}])
+
+.controller("ReviewController", [function(){
+
+  this.review = {};
+
+  this.addReview = function(product){
+    product.reviews.push(this.review);
+    this.review = {};
+  };
+}])
+
+// var books = {
+//     name: 'Pinciples of Mathematical Analysis',
+//     description: "Hi, I am description",
+//     author: "Walter Rudin",
+//     isbn: 987654321099,
+//     price: 110.50,
+//     edition: 2,
+//     images: [
+//       "http://d.gr-assets.com/books/1339192336l/292079.jpg",
+//       "http://ecx.images-amazon.com/images/I/41QkrgV1BhL._SY344_BO1,204,203,200_.jpg",
+//       "http://ecx.images-amazon.com/images/I/31w4IxdgYbL._SY344_BO1,204,203,200_.jpg"
+//     ]
+//   };
+
