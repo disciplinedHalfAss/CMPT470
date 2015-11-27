@@ -18,6 +18,12 @@ angular.module('mainApp', ['ui.router'])
         templateUrl: 'partials/_book.html',
         controller: 'StoreController'
       })
+      
+      .state('password', {
+        url: '/password',
+        templateUrl: 'partials/_change_password.html',
+        controller: 'PasswordController'
+      })
 
       .state('profile', {
         url: '/profile/{id}',
@@ -53,6 +59,24 @@ angular.module('mainApp', ['ui.router'])
 }])
 
 .controller('RegisterController', [function(){
+}])
+
+.controller('PasswordController', ['users','$scope', function(users, $scope){
+  $scope.logged_in_user = users.logged_in_user
+  $scope.old_password = '';
+  $scope.new_password = '';
+  $scope.repeat_password = '';
+  $scope.save = function(){
+    if ($scope.old_password == $scope.logged_in_user.password){
+      if ($scope.new_password == $scope.repeat_password){
+        $scope.logged_in_user.password = $scope.new_password;
+        
+        $scope.old_password = '';
+        $scope.new_password = '';
+        $scope.repeat_password = '';
+      }
+    }
+  }
 }])
 
 .controller('BookIndexController', ['books', '$scope', function(books, $scope){
