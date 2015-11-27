@@ -17,13 +17,24 @@ angular.module('mainApp', ['ui.router'])
         url: '/book/{id}',
         templateUrl: 'book.html',
         controller: 'StoreController'
-      });
+      })
+
+      .state('add_new_book', {
+        url: '/new_book',
+        templateUrl: 'newBook.html',
+        controller: 'NewBookController'
+      })
+
+      .state('profile', {
+        url: '/profile/{id}',
+        templateUrl: 'profile.html',
+        controller: 'ProfileController'
+      })
 
        $urlRouterProvider.otherwise('home');
   }
 
   ])
-
 
 .controller('HomeCtrl', [function(){
 
@@ -202,3 +213,130 @@ angular.module('mainApp', ['ui.router'])
     this.review = {};
   };
 }])
+
+
+
+
+
+
+
+
+.controller("ProfileController", ["$scope", "$state", "books",
+function($scope, $state, books) {
+
+  $scope.data = books.books;
+
+  $scope.addBook = function() {
+    $state.go("add_new_book");
+  };
+  $scope.bookDetails = function(x) {
+    $location.path("/bookDetails/" + x);
+  };
+  $scope.editbook = function(x) {
+    $location.path("/home/" + x)
+  }
+  $scope.removeBook=function(index) {
+    var r = confirm("Are you sure you want to delete this item?");
+    if (r === true) {
+      books.books.splice(index,1);
+    } else {
+    }
+  }  
+  // $scope.removeBook = function(index) {
+  //   bookService.removeBook(index);
+  //   $location.path("/home");
+  // }
+}])
+.controller("NewBookController", ["$scope", "$state", "books",
+function($scope, $state, books) {
+  $scope.books = books.books
+  
+  $scope.save = function() {
+    // bookService.addBooks({
+    //   Author: $scope.book.author,
+    //   Title: $scope.book.title,
+    //   Keyword: $scope.book.keyword,
+    //   ISBN: $scope.book.ISBN,
+    //   Price: $scope.book.price,
+    //   isDelete: false
+    // })
+    temp = {
+        id: 1, 
+        name: $scope.book.name,
+        edition: $scope.book.edition,
+        author: $scope.book.author,
+        isbn:$scope.book.isbn, 
+        price: $scope.book.price, 
+        tags: [],
+        ownersRating: null, 
+        numberOfReviews: null
+      }
+   books.books.push(temp);
+    $state.go("profile");
+  }
+  $scope.cancel = function() {
+    $state.go("profile");
+  }
+}])
+
+.controller("accountController", ["$scope", "$location", "$routeParams",
+function($scope, $location, $routeParams) {
+
+  $scope.signIn = function() {
+    $location.path("/signIn");
+  };
+
+  $scope.home = function() {
+    $location.path("/home");
+  }
+}])
+
+.directive("clickToEdit", function() {
+  var editorTemplate = '' +
+    '<div class="click-to-edit">' +
+    '<div ng-hide="view.editorEnabled">' +
+    '{{value}} ' +
+    '<a class="button tiny" ng-click="enableEditor()">Edit</a>' +
+    '</div>' +
+    '<div ng-show="view.editorEnabled">' +
+    '<input type="text" class="small-12.columns" ng-model="view.editableValue">' +
+    '<a class="button tiny" ng-click="save()">Save</a>' +
+    ' or ' +
+    '<a class="button tiny" ng-click="disableEditor()">cancel</a>' +
+    '</div>' +
+    '</div>';
+
+  return {
+    restrict: "A",
+    replace: true,
+    template: editorTemplate,
+    scope: {
+      value: "=clickToEdit",
+    },
+    link: function(scope, element, attrs) {
+      scope.view = {
+        editableValue: scope.value,
+        editorEnabled: false
+      };
+
+      scope.enableEditor = function() {
+        scope.view.editorEnabled = true;
+        scope.view.editableValue = scope.value;
+        setTimeout(function() {
+          element.find('input')[0].focus();
+          //element.find('input').focus().select(); // w/ jQuery
+        });
+      };
+
+      scope.disableEditor = function() {
+        scope.view.editorEnabled = false;
+      };
+
+      scope.save = function() {
+        scope.value = scope.view.editableValue;
+        scope.disableEditor();
+      };
+
+    }
+  };
+});

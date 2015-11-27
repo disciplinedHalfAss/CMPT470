@@ -45,6 +45,7 @@
         <ul class="nav navbar-nav navbar-right">
         <li ng-click="setIndex(0)" ng-class="(index==0) ? 'active' : ''"><a href="#/login">Login</a></li>
         <li ng-click="setIndex(1)" ng-class="(index==1) ? 'active' : ''"><a href="#/register">Register</a></li>
+        <li ng-click="setIndex(2)" ng-class="(index==2) ? 'active' : ''"><a href="#/profile/0">Profile</a></li>
         </ul>
       </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -231,6 +232,97 @@
         </div>
       </div>
    </script> 
+   <script  type="text/ng-template" id ='profile.html'>
+    <div class='container' ng-controller="ProfileController">
+      <div class='row'>
+        <div class='col-xs-12'>
+          <div class="row">
+          <br>
+          <div>
+            <strong>Username:</strong>
+            <div click-to-edit="user.username"></div>
+          </div>
+          <div>
+            <strong>First Name:</strong>
+            <div click-to-edit="user.firstname"></div>
+          </div>
+          <div>
+            <strong>Last Name:</strong>
+            <div click-to-edit="user.lastname"></div>
+          </div>
+          <div>
+            <strong>E-Mail:</strong>
+            <div click-to-edit="user.email"></div>
+          </div>
+          <div>
+            <strong>Phone:</strong>
+            <div click-to-edit="user.phone"></div>
+          </div>
+          <br>
+          </div>
+          
+          <table>
+          <tbody>
+            <tr>
+              <th>Book Title</th>
+              <th>Edition</th>
+              <th>Author</th>
+              <th>ISBN</th>
+              <th>Price</th>
+              <th></th>
+            </tr>
+            <tr data-ng-repeat="book in data">
+              <td><div click-to-edit="book.name"></div></td>
+              <td><div click-to-edit="book.edition"></div></td>
+              <td><div click-to-edit="book.author"></div></td>
+              <td><div click-to-edit="book.isbn"></div></td>
+              <td><div click-to-edit="book.price"></div></td>
+              <td><button class="glyphicon glyphicon-remove" ng-click="removeBook($index)"></button></td>
+            </tr>
+          </tbody>
+          </table>
+          <div>
+          <form action="#/new_book">
+            <button data-ng-click="addBook()" class="btn btn-default" type="button">Add Book</button>
+          </form>
+          </div>
+          </div>
+        </div>
+      </div>
+   </script>
+   
+   <script  type="text/ng-template" id ='newBook.html'>
+       <div class='container' ng-controller="NewBookController">
+        <div class='row'>
+          <div class='col-xs-12'>
+            <div class="form-group">
+            <label for="authorName">Book Name</label>
+            <input type="text" id="authorName" class="form-control" data-ng-model="book.name" />
+            </div>
+            <div class="form-group">
+            <label for="title">Author</label>
+            <input type="text" id="title" class="form-control" data-ng-model="book.author" />
+            </div>
+            <div class="form-group">
+            <label for="keyword">Edition</label>
+            <input type="text" id="keyword" class="form-control" data-ng-model="book.edition" />
+            </div>
+            <div class="form-group">
+            <label for="keyword">ISBN</label>
+            <input type="text" id="isbn" class="form-control" data-ng-model="book.isbn" />
+            </div>
+            <div class="form-group">
+            <label for="keyword">Price</label>
+            <input type="text" id="price" class="form-control" data-ng-model="book.price" />
+            </div>
+            <div class="form-group">
+            <button class="btn-btn-primary" data-ng-click="save()">Save</button>
+            <button class="btn-btn-primary" data-ng-click="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+   </script>
    
   </body>
 </html>
