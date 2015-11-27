@@ -1,5 +1,5 @@
 body {
-  background-image: url("./assets/images/bg3.JPG");
+  background-image: url("../images/bg3.JPG");
 	background-size: cover;
 	background-repeat: no-repeat;
   background-attachment: fixed;
@@ -41,9 +41,13 @@ select{
 }
 
 #newbookctrl{
-	margin-top: 110px;
+	margin-top: 60px;
 }
 
 #profilectrl{
-	margin-top: 110px;
+	margin-top: 60px;
+}
+
+#book{
+  margin-top: 60px;
 }

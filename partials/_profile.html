@@ -1,0 +1,56 @@
+<div class='container' ng-controller="ProfileController" id="profilectrl">
+<div class='row'>
+  <div class='col-xs-12'>
+    <div class="row">
+    <br>
+    <div>
+      <strong>Username:</strong>
+      <div click-to-edit="user.username"></div>
+    </div>
+    <div>
+      <strong>First Name:</strong>
+      <div click-to-edit="user.firstname"></div>
+    </div>
+    <div>
+      <strong>Last Name:</strong>
+      <div click-to-edit="user.lastname"></div>
+    </div>
+    <div>
+      <strong>E-Mail:</strong>
+      <div click-to-edit="user.email"></div>
+    </div>
+    <div>
+      <strong>Phone:</strong>
+      <div click-to-edit="user.phone"></div>
+    </div>
+    <br>
+    </div>
+    
+    <table>
+    <tbody>
+      <tr>
+        <th>Book Title</th>
+        <th>Edition</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      <tr data-ng-repeat="book in data">
+        <td><div click-to-edit="book.name"></div></td>
+        <td><div click-to-edit="book.edition"></div></td>
+        <td><div click-to-edit="book.author"></div></td>
+        <td><div click-to-edit="book.isbn"></div></td>
+        <td><div click-to-edit="book.price"></div></td>
+        <td><button class="glyphicon glyphicon-remove" ng-click="removeBook($index)"></button></td>
+      </tr>
+    </tbody>
+    </table>
+    <div>
+    <form action="#/new_book">
+      <button data-ng-click="addBook()" class="btn btn-default" type="button">Add Book</button>
+    </form>
+    </div>
+    </div>
+  </div>
+</div>

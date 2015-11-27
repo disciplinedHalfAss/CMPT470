@@ -9,25 +9,25 @@ angular.module('mainApp', ['ui.router'])
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: 'home.html',
+        templateUrl: 'partials/_home.html',
         controller: 'HomeCtrl'
       })
 
       .state('book', {
         url: '/book/{id}',
-        templateUrl: 'book.html',
+        templateUrl: 'partials/_book.html',
         controller: 'StoreController'
       })
 
       .state('add_new_book', {
         url: '/new_book',
-        templateUrl: 'newBook.html',
+        templateUrl: 'partials/_new_book.html',
         controller: 'NewBookController'
       })
 
       .state('profile', {
         url: '/profile/{id}',
-        templateUrl: 'profile.html',
+        templateUrl: 'partials/_profile.html',
         controller: 'ProfileController'
       })
 
