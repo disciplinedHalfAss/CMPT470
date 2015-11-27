@@ -24,7 +24,7 @@ angular.module('mainApp', ['ui.router'])
         templateUrl: 'partials/_change_password.html',
         controller: 'PasswordController'
       })
-
+      
       .state('profile', {
         url: '/profile/{id}',
         views: {
@@ -55,7 +55,21 @@ angular.module('mainApp', ['ui.router'])
        $urlRouterProvider.otherwise('home');
 }])
 
-.controller('LoginController', [function(){
+.controller('LoginController', [ 'users', '$scope', '$state', function(users, $scope, $state){
+  $scope.id = ''
+  $scope.password = ''
+  $scope.signin = function(){
+    console.log('1')
+    var user_index = users.users.map(function(user){
+      return user.email;
+    }).indexOf($scope.id)
+    if (user_index){
+      if ($scope.password == users.users[user_index].password){
+        users.logged_in_user = users.users[user_index];
+        $state.go('profile');
+      }
+    }
+  }
 }])
 
 .controller('RegisterController', [function(){
@@ -138,7 +152,7 @@ angular.module('mainApp', ['ui.router'])
 }])
 
 .controller('UserInfoController', ['$scope', 'users',function($scope, users){
-  $scope.logged_in_user = users.users[0]
+  $scope.logged_in_user = users.logged_in_user;
   $scope.state = 'saved'
   $scope.save = function(){
     $scope.state = 'saved'
