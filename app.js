@@ -83,7 +83,7 @@ angular.module('mainApp', ['ui.router'])
     if (user_index == -1){
       if ($scope.password == $scope.confirm_password){
         var new_user = {
-          username: null,
+          username: Math.random().toString(36).substring(7),
           name: null,
           email: $scope.email_id,
           phone_number: null,
