@@ -39,3 +39,11 @@ select{
 	color: white !important;
 	font-weight: bold !important;
 }
+
+#newbookctrl{
+	margin-top: 110px;
+}
+
+#profilectrl{
+	margin-top: 110px;
+}
