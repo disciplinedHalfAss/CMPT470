@@ -59,7 +59,6 @@ angular.module('mainApp', ['ui.router'])
   $scope.id = ''
   $scope.password = ''
   $scope.signin = function(){
-    console.log('1')
     var user_index = users.users.map(function(user){
       return user.email;
     }).indexOf($scope.id)
@@ -72,7 +71,37 @@ angular.module('mainApp', ['ui.router'])
   }
 }])
 
-.controller('RegisterController', [function(){
+.controller('RegisterController', ['$scope', 'users', '$state', function($scope, users, $state){
+  $scope.email_id = '';
+  $scope.password = '';
+  $scope.confirm_password = '';
+  
+  $scope.register = function(){
+    var user_index = users.users.map(function(user){
+      return user.email;
+    }).indexOf($scope.email_id)
+    if (user_index == -1){
+      if ($scope.password == $scope.confirm_password){
+        var new_user = {
+          username: null,
+          name: null,
+          email: $scope.email_id,
+          phone_number: null,
+          university: null,
+          password: $scope.password,
+          facebook: null, 
+        }
+        users.users.push(new_user);
+        users.logged_in_user = users.users[users.users.map(function(e){
+          return e.email;
+        }).indexOf($scope.email_id)]
+        console.log(new_user);
+        console.log(users.logged_in_user);
+        $state.go('profile');
+      }
+    }
+  }
+  
 }])
 
 .controller('PasswordController', ['users','$scope', function(users, $scope){
