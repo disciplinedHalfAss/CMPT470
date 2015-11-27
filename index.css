@@ -1,17 +1,17 @@
 body {
-    background-image: url("./assets/images/bg3.jpg");
+  background-image: url("./assets/images/bg3.JPG");
 	background-size: cover;
 	background-repeat: no-repeat;
-    background-attachment: fixed;
+  background-attachment: fixed;
 }
 #options{
 	position: fixed;
 	z-index: 1;
 	top: 50px;
-	
+
 	padding-top: 10px;
 	padding-bottom: 0px;
-	
+
 	left:0;
 	right:0;
 	margin-left:auto;
