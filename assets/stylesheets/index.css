@@ -52,3 +52,6 @@ select{
 textarea { 
   resize:vertical; 
 }
+.form-group{
+  margin-bottom: 8px;
+}

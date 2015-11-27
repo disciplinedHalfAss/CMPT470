@@ -113,7 +113,16 @@ angular.module('mainApp', ['ui.router'])
   
 }])
 
-.controller('UserInfoController', [function(){
+.controller('UserInfoController', ['$scope', 'users',function($scope, users){
+  $scope.logged_in_user = users.users[0]
+  $scope.state = 'saved'
+  $scope.save = function(){
+    $scope.state = 'saved'
+  }
+  $scope.edit = function(){
+    $scope.state = 'editing'
+  }
+  
 }])
 
 .controller('HomeCtrl', [function(){
@@ -121,7 +130,7 @@ angular.module('mainApp', ['ui.router'])
 .controller('BookCtrl', [function(){ 
 }])
 
-.factory('search',[function(){
+.factory('users',[function(){
   var o = {
     users: [
       {
