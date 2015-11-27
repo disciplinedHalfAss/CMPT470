@@ -101,7 +101,32 @@ angular.module('mainApp', ['ui.router'])
 }])
 .controller('BookCtrl', [function(){ 
 }])
-
+.factory('search',[function(){
+  var o = {
+    users: [
+      {
+        username: 'Archit_the_pn_master',
+        name: 'san',
+        email: 'manga@pn.com',
+        phone_number: 69696969,
+        university: 'dead mountain',
+        password: 123,
+        facebook: 'atpm', 
+      },
+      {
+        username: 'your magisty',
+        name: 'ali',
+        email: 'king@word.com',
+        phone_number: 1000000000,
+        university: 'MIT',
+        password: 321,
+        facebook: 'lord', 
+      }
+    ],
+    logged_in_user: null,
+  }
+  return o;
+}])
 .factory('search',[function(){
   var o = {
     	universities: [
