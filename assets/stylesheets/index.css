@@ -40,9 +40,6 @@ select{
 	font-weight: bold !important;
 }
 
-#newbookctrl{
-	margin-top: 60px;
-}
 
 #profilectrl{
 	margin-top: 60px;
@@ -50,4 +47,8 @@ select{
 
 #book{
   margin-top: 60px;
+}
+
+textarea { 
+  resize:vertical; 
 }

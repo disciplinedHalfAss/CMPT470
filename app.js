@@ -19,29 +19,87 @@ angular.module('mainApp', ['ui.router'])
         controller: 'StoreController'
       })
 
-      .state('add_new_book', {
-        url: '/new_book',
-        templateUrl: 'partials/_new_book.html',
-        controller: 'NewBookController'
-      })
-
       .state('profile', {
         url: '/profile/{id}',
-        templateUrl: 'partials/_profile.html',
-        controller: 'ProfileController'
+        views: {
+          '': { templateUrl: 'partials/_profile.html' },
+          'userinfo@profile': {
+            templateUrl: 'partials/_userinfo.html',
+            controller: 'UserInfoController'
+          },
+          'addview@profile': {
+            templateUrl: 'partials/_new_book.html',
+            controller: 'BookIndexController'
+          }
+        }
       })
 
        $urlRouterProvider.otherwise('home');
+}])
+.controller('BookIndexController', ['books', '$scope', function(books, $scope){
+  var id_g = 13;
+  $scope.state = 'add';
+  $scope.books = books.books;
+  $scope.active_book = {
+    id: null,
+    name: null,
+    author: null,
+    edition: null,
+    isbn: null,
+    price: null,
+    tags: null,
+    description: null,
   }
-
-  ])
-
-.controller('HomeCtrl', [function(){
-
+  $scope.add = function(){
+    $scope.active_book.id = ++id_g;
+    $scope.books.push($scope.active_book);
+    $scope.clear();
+  }
+  $scope.clear = function(){
+    $scope.active_book = {
+      id: null,
+      name: null,
+      author: null,
+      edition: null,
+      isbn: null,
+      price: null,
+      tags: null,
+      description: null,
+    }
+  }
+  
+  $scope.show = function(id){
+    $scope.index_of_book = $scope.books.map(
+      function(e){
+        return e.id
+      }
+    ).indexOf(id);
+    $scope.selected_book = $scope.books[$scope.index_of_book];
+    $scope.active_book = $.extend(true, {}, $scope.selected_book);
+    $scope.state = 'edit';
+  }
+  $scope.cancel = function(){
+    $scope.clear();
+    $scope.state = 'add';
+  }
+  
+  $scope.save = function(){
+    console.log($scope.selected_book);
+    $scope.books[$scope.index_of_book] = $.extend(true, {}, $scope.active_book);
+    console.log($scope.selected_book);
+    $scope.clear();
+    $scope.state = 'add';
+  }
+  
+  
 }])
 
-.controller('BookCtrl', [function(){
-  
+.controller('UserInfoController', [function(){
+}])
+
+.controller('HomeCtrl', [function(){
+}])
+.controller('BookCtrl', [function(){ 
 }])
 
 .factory('search',[function(){
@@ -213,130 +271,3 @@ angular.module('mainApp', ['ui.router'])
     this.review = {};
   };
 }])
-
-
-
-
-
-
-
-
-.controller("ProfileController", ["$scope", "$state", "books",
-function($scope, $state, books) {
-
-  $scope.data = books.books;
-
-  $scope.addBook = function() {
-    $state.go("add_new_book");
-  };
-  $scope.bookDetails = function(x) {
-    $location.path("/bookDetails/" + x);
-  };
-  $scope.editbook = function(x) {
-    $location.path("/home/" + x)
-  }
-  $scope.removeBook=function(index) {
-    var r = confirm("Are you sure you want to delete this item?");
-    if (r === true) {
-      books.books.splice(index,1);
-    } else {
-    }
-  }  
-  // $scope.removeBook = function(index) {
-  //   bookService.removeBook(index);
-  //   $location.path("/home");
-  // }
-}])
-.controller("NewBookController", ["$scope", "$state", "books",
-function($scope, $state, books) {
-  $scope.books = books.books
-  
-  $scope.save = function() {
-    // bookService.addBooks({
-    //   Author: $scope.book.author,
-    //   Title: $scope.book.title,
-    //   Keyword: $scope.book.keyword,
-    //   ISBN: $scope.book.ISBN,
-    //   Price: $scope.book.price,
-    //   isDelete: false
-    // })
-    temp = {
-        id: 1, 
-        name: $scope.book.name,
-        edition: $scope.book.edition,
-        author: $scope.book.author,
-        isbn:$scope.book.isbn, 
-        price: $scope.book.price, 
-        tags: [],
-        ownersRating: null, 
-        numberOfReviews: null
-      }
-   books.books.push(temp);
-    $state.go("profile");
-  }
-  $scope.cancel = function() {
-    $state.go("profile");
-  }
-}])
-
-.controller("accountController", ["$scope", "$location", "$routeParams",
-function($scope, $location, $routeParams) {
-
-  $scope.signIn = function() {
-    $location.path("/signIn");
-  };
-
-  $scope.home = function() {
-    $location.path("/home");
-  }
-}])
-
-.directive("clickToEdit", function() {
-  var editorTemplate = '' +
-    '<div class="click-to-edit">' +
-    '<div ng-hide="view.editorEnabled">' +
-    '{{value}} ' +
-    '<a class="button tiny" ng-click="enableEditor()">Edit</a>' +
-    '</div>' +
-    '<div ng-show="view.editorEnabled">' +
-    '<input type="text" class="small-12.columns" ng-model="view.editableValue">' +
-    '<a class="button tiny" ng-click="save()">Save</a>' +
-    ' or ' +
-    '<a class="button tiny" ng-click="disableEditor()">cancel</a>' +
-    '</div>' +
-    '</div>';
-
-  return {
-    restrict: "A",
-    replace: true,
-    template: editorTemplate,
-    scope: {
-      value: "=clickToEdit",
-    },
-    link: function(scope, element, attrs) {
-      scope.view = {
-        editableValue: scope.value,
-        editorEnabled: false
-      };
-
-      scope.enableEditor = function() {
-        scope.view.editorEnabled = true;
-        scope.view.editableValue = scope.value;
-        setTimeout(function() {
-          element.find('input')[0].focus();
-          //element.find('input').focus().select(); // w/ jQuery
-        });
-      };
-
-      scope.disableEditor = function() {
-        scope.view.editorEnabled = false;
-      };
-
-      scope.save = function() {
-        scope.value = scope.view.editableValue;
-        scope.disableEditor();
-      };
-
-    }
-  };
-});
