@@ -33,9 +33,28 @@ angular.module('mainApp', ['ui.router'])
           }
         }
       })
+      
+        .state('login', {
+        url: '/login',
+        templateUrl: 'partials/_login.html',
+        controller: 'LoginController'
+      })
+      
+        .state('register', {
+        url: '/register',
+        templateUrl: 'partials/_register.html',
+        controller: 'RegisterController'
+      })
 
        $urlRouterProvider.otherwise('home');
 }])
+
+.controller('LoginController', [function(){
+}])
+
+.controller('RegisterController', [function(){
+}])
+
 .controller('BookIndexController', ['books', '$scope', function(books, $scope){
   var id_g = 13;
   $scope.state = 'add';
@@ -101,6 +120,7 @@ angular.module('mainApp', ['ui.router'])
 }])
 .controller('BookCtrl', [function(){ 
 }])
+
 .factory('search',[function(){
   var o = {
     users: [
