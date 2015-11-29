@@ -2,6 +2,13 @@ Rails.application.routes.draw do
   
   root to: 'application#angular'
   
+  resource :universities
+  resource :departments
+  resource :courses
+  resource :users
+  resource :books
+  resource :reviews
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
