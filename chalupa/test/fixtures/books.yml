@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_id: 1
+  user_id: 1
+  isbn: MyString
+  name: MyString
+  author: MyText
+  edition: 1
+  price: 1
+  tags: MyText
+  description: MyText
+  is_sold: false
+
+two:
+  course_id: 1
+  user_id: 1
+  isbn: MyString
+  name: MyString
+  author: MyText
+  edition: 1
+  price: 1
+  tags: MyText
+  description: MyText
+  is_sold: false
