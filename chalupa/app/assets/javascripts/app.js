@@ -9,32 +9,32 @@ angular.module('mainApp', ['ui.router', 'templates'])
     $stateProvider
       .state('home', {
         url: '/home',
-        templateUrl: 'partials/_home.html',
+        templateUrl: 'home/_home.html',
         controller: 'HomeCtrl'
       })
 
       .state('book', {
         url: '/book/{id}',
-        templateUrl: 'partials/_book.html',
+        templateUrl: 'book/_book.html',
         controller: 'StoreController'
       })
       
       .state('password', {
         url: '/password',
-        templateUrl: 'partials/_change_password.html',
+        templateUrl: 'profile/_change_password.html',
         controller: 'PasswordController'
       })
       
       .state('profile', {
         url: '/profile/{id}',
         views: {
-          '': { templateUrl: 'partials/_profile.html' },
+          '': { templateUrl: 'profile/_profile.html' },
           'userinfo@profile': {
-            templateUrl: 'partials/_userinfo.html',
+            templateUrl: 'profile/_userinfo.html',
             controller: 'UserInfoController'
           },
           'addview@profile': {
-            templateUrl: 'partials/_new_book.html',
+            templateUrl: 'profile/_new_book.html',
             controller: 'BookIndexController'
           }
         }
@@ -42,13 +42,13 @@ angular.module('mainApp', ['ui.router', 'templates'])
       
         .state('login', {
         url: '/login',
-        templateUrl: 'partials/_login.html',
+        templateUrl: 'authentication/_login.html',
         controller: 'LoginController'
       })
       
         .state('register', {
         url: '/register',
-        templateUrl: 'partials/_register.html',
+        templateUrl: 'authentication/_register.html',
         controller: 'RegisterController'
       })
 
