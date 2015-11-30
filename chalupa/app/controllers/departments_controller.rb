@@ -42,5 +42,5 @@ class DepartmentsController < ApplicationController
 	def department_params
 		params.require(:department).permit(:name, :short_name, :university_id)
 	end
-end
+	
 end
