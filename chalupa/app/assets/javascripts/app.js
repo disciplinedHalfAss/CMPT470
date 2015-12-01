@@ -10,7 +10,12 @@ angular.module('mainApp', ['ui.router', 'templates'])
       .state('home', {
         url: '/home',
         templateUrl: 'home/_home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        resolve: {
+          bookPromise: ['books', function(books){
+            return books.getAll();
+          }]
+        }
       })
 
       .state('book', {

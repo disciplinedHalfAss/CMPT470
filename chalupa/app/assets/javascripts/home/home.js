@@ -30,45 +30,14 @@ angular.module('mainApp')
 
 
 
-.factory('books', [function(){
-  var o = {
-    books: 
-    [
-      {
-        id: 0, 
-        name: "James Bond", 
-        edition: 1,
-        author:"Alireza",
-        isbn:21367,
-        price: '70',
-        tags: ['asGoodAsNew'],
-        ownersRating: 1, 
-        numberOfReviews: 15
-      },
-      {
-        id: 1, 
-        name: "Code Geass",
-        edition: 3,
-        author:"",
-        isbn:21367, 
-        price: '88', 
-        tags: ['alright'],
-        ownersRating: 3, 
-        numberOfReviews: 10
-      },
-      {
-        id: 2, 
-        name: "NginX",
-        edition: 2,
-        author:"",
-        isbn:21367, 
-        price: '200', 
-        tags: ['myPrecious'],
-        ownersRating: 5, 
-        numberOfReviews: 100
-      },
-    ]
-  }
+.factory('books', [ '$http', function($http){
+  var o = {};
+  o.books = [];
+  o.getAll = function(){
+    return $http.get('/books.json').success(function(data){
+      angular.copy(data, o.books);
+    });
+  };
   return o;
 }])
 
