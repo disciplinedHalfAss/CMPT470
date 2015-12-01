@@ -7,22 +7,30 @@ angular.module('mainApp')
 
 
 
-.factory('search',[function(){
-  var o = {
-    	universities: [
-                      { name: 'SFU', id: 0 },
-                      { name: 'UBC', id: 1 }
-                    ],
-      departments:  [
-                      { name: 'MATH', id: 0 },
-                      { name: 'ECON', id: 1 },
-                      { name: 'PHYS', id: 2 }
-                    ],				
-      courses:  [
-                  { name: '238', id: 0 },
-                  { name: '300', id: 1 },
-                  { name: '338', id: 2 }
-                ],	
+.factory('search',[ '$http', function($http){
+  var o = {}
+  o.universities = [];
+  o.departments = [];
+  o.courses = [];
+  o.getAll = function(){
+    o.getAllUniversities();
+    o.getAllDepartments();
+    o.getAllCourses();
+  };
+  o.getAllUniversities = function(){
+    return $http.get('/universities.json').success(function(data){
+      angular.copy(data, o.universities);
+    });
+  }
+  o.getAllDepartments = function(){
+    return $http.get('/departments.json').success(function(data){
+      angular.copy(data, o.departments);
+    });
+  }
+  o.getAllCourses = function(){
+    return $http.get('/courses.json').success(function(data){
+      angular.copy(data, o.courses);
+    });
   }
   return o;
 }])

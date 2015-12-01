@@ -46,6 +46,65 @@ books = [
   
 ]
 
+universities = [
+  {
+    name: 'Simon Fraser University',
+    short_name: 'SFU',
+  },
+  {
+    name: 'University of British Columbia',
+    short_name: 'UBC'
+  }
+]
+
+deparments = [
+  {
+    name: 'Mathematics',
+    short_name: 'MATH',
+    university_id: 1
+  },
+  {
+    name: 'Computing Science',
+    short_name: 'CMPT',
+    university_id: 1
+  },
+  {
+    name: 'Mathematics',
+    short_name: 'MATH',
+    university_id: 2
+  },
+  {
+    name: 'Computing Science',
+    short_name: 'CMPT',
+    university_id: 2
+  }
+]
+
+courses = [
+  {
+    name: 'Artificial Inteligence',
+    number: 310,
+    department_id: 2
+  },
+  {
+    name: 'Computer Vision',
+    number: 412,
+    department_id: 2
+  },
+]
+
 books.each do |book|
   Book.create(book)
+end
+
+universities.each do |university|
+  University.create(university)
+end
+
+deparments.each do |deparment|
+  Department.create(deparment)
+end
+
+courses.each do |course|
+  Course.create(course)
 end

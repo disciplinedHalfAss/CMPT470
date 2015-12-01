@@ -14,6 +14,9 @@ angular.module('mainApp', ['ui.router', 'templates'])
         resolve: {
           bookPromise: ['books', function(books){
             return books.getAll();
+          }],
+          searchPromise: ['search', function(search){
+            return search.getAll();
           }]
         }
       })
