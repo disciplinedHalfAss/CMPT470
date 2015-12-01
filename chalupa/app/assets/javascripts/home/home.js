@@ -98,10 +98,12 @@ angular.module('mainApp')
   }
 	
 	$scope.getStars = function(n){
-		return new Array(n);
+    if (n) { return new Array(n); }
+    return new Array(3)
 	}
 	$scope.getEmptyStars = function(n){
-		return new Array(5-n);
+		if (n) { return new Array(5-n); }
+    return new Array(2)
 	}
 	
 }])
