@@ -2,7 +2,7 @@ angular.module('mainApp')
 
 
 .controller('BookIndexController', ['books', '$scope', function(books, $scope){
-  $scope.state_in = 'add';
+  $scope.state = 'add';
   $scope.books = books.books;
   $scope.active_book = {
     name: null,
@@ -40,23 +40,20 @@ angular.module('mainApp')
       }
     ).indexOf(id);
     $scope.selected_book = $scope.books[$scope.index_of_book];
-    $scope.active_book = $.extend(true, {}, $scope.selected_book);
+    angular.copy($scope.selected_book, $scope.active_book);
     $scope.state = 'edit';
   }
+  
   $scope.cancel = function(){
     $scope.clear();
     $scope.state = 'add';
   }
   
   $scope.save = function(){
-    console.log($scope.selected_book);
-    $scope.books[$scope.index_of_book] = $.extend(true, {}, $scope.active_book);
-    console.log($scope.selected_book);
+    angular.copy($scope.active_book, $scope.selected_book);
     $scope.clear();
     $scope.state = 'add';
-  }
-  
-  
+  } 
 }])
 
 .controller('UserInfoController', ['$scope', 'users',function($scope, users){
