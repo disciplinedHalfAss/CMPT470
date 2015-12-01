@@ -38,6 +38,11 @@ angular.module('mainApp')
       angular.copy(data, o.books);
     });
   };
+  o.create = function(book){
+    return $http.post('/books.json', book).success(function(data){
+      o.books.push(data);
+    });
+  };
   return o;
 }])
 

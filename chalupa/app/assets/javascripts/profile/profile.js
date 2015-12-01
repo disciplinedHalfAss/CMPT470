@@ -2,11 +2,9 @@ angular.module('mainApp')
 
 
 .controller('BookIndexController', ['books', '$scope', function(books, $scope){
-  var id_g = 13;
-  $scope.state = 'add';
+  $scope.state_in = 'add';
   $scope.books = books.books;
   $scope.active_book = {
-    id: null,
     name: null,
     author: null,
     edition: null,
@@ -15,14 +13,16 @@ angular.module('mainApp')
     tags: null,
     description: null,
   }
+  $scope.addBook = function(book){
+    if( (!book.isbn && (!book.name || !book.author || !book.edition) ) || !book.price ) { return; }
+    books.create(book);
+  }
   $scope.add = function(){
-    $scope.active_book.id = ++id_g;
-    $scope.books.push($scope.active_book);
+    $scope.addBook($scope.active_book);
     $scope.clear();
   }
   $scope.clear = function(){
     $scope.active_book = {
-      id: null,
       name: null,
       author: null,
       edition: null,
