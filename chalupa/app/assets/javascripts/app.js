@@ -63,16 +63,9 @@ angular.module('mainApp', ['ui.router', 'templates'])
        $urlRouterProvider.otherwise('home');
 }])
 
-
-
-.controller('HomeCtrl', [function(){
+.controller('navbarCtrl', ['$scope', function ($scope) {
+	$scope.index;
+	$scope.setIndex = function(i){
+		$scope.index = i;
+	}	
 }])
-.controller('BookCtrl', [function(){ 
-}])
-
-
-
-
-
-
-// Books view

@@ -1,11 +1,7 @@
 angular.module('mainApp')
 
-
 .controller('HomeCtrl', [function(){
 }])
-
-
-
 
 .factory('search',[ '$http', function($http){
   var o = {}
@@ -32,6 +28,12 @@ angular.module('mainApp')
       angular.copy(data, o.courses);
     });
   }
+  o.sortOptions = [
+    { name: 'Price: low to high', id: 0 },
+    { name: 'Price: high to low', id: 1 },
+    { name: 'Avg. user review', id: 2 },
+    { name: 'Newest postings', id: 3 }
+  ]
   return o;
 }])
 
@@ -51,36 +53,22 @@ angular.module('mainApp')
   return o;
 }])
 
-.factory('selected', [function(){
+.factory('selected', ['search', function(search){
   var o = {
     selectedUniversity: null,
     selectedDepartment: null,
     selectedCourse: null,
-    selectedSortOption: null,
-
-    sortOptions:  [
-                      { name: 'Price: low to high', id: 0 },
-                      { name: 'Price: high to low', id: 1 },
-                      { name: 'Avg. user review', id: 2 },
-                      { name: 'Newest postings', id: 3 }
-                    ]
-    
+    selectedSortOption: search.sortOptions[1],    
   }
   return o;
 }])
-.controller('navbarCtrl', ['$scope', function ($scope) {
-	$scope.index;
-	$scope.setIndex = function(i){
-		$scope.index = i;
-	}	
-}])
-
 
 .controller('booksIndexCtrl', ['$scope', 'books', 'selected', function ($scope, books, selected) {
 	$scope.books = books.books;
+  $scope.selectedSortOption = selected.selectedSortOption
   $scope.books_order_by = function(book){
-    console.log(selected.selectedSortOption)
-    switch (selected.selectedSortOption){
+    console.log($scope.selectedSortOption.id)
+    switch ($scope.selectedSortOption.id){
       case 0:
         return book.price;
         break;
@@ -99,24 +87,21 @@ angular.module('mainApp')
 	
 	$scope.getStars = function(n){
     if (n) { return new Array(n); }
-    return new Array(3)
+    return new Array(0)
 	}
 	$scope.getEmptyStars = function(n){
 		if (n) { return new Array(5-n); }
-    return new Array(2)
+    return new Array(5)
 	}
 	
 }])
-
-
 
 .controller('searchCtrl', ['$scope', 'search', 'selected', function ($scope, search, selected) {
   
   $scope.universities = search.universities
   $scope.departments = search.departments
   $scope.courses = search.courses
-  
-  $scope.sortOptions = selected.sortOptions
+  $scope.sortOptions = search.sortOptions
 	
 	$scope.selectedUniversity = selected.selectedUniversity;
 	$scope.selectedDepartment = selected.selectedDepartment;
@@ -133,7 +118,7 @@ angular.module('mainApp')
 
 	}
 	$scope.sortOrder = function(){
-		
+		console.log(selected.selectedSortOption.id)
 	}
 }])
 
