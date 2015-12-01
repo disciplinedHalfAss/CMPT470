@@ -13,14 +13,14 @@
       <div class='col-xs-12 col-sm-2'>
         <select class="form-control input-sm search-select" 
             ng-model="selectedDepartment" 
-            ng-options="Department.name for Department in departments" 
+            ng-options="Department.name for Department in departments | filter: {university_id:selectedUniversity.id}" 
             ng-change="departmentChanged()">
         </select>
       </div>
       <div class='col-xs-12 col-sm-2'>
         <select class="form-control input-sm search-select" 
             ng-model="selectedCourse" 
-            ng-options="course.name for course in courses" 
+            ng-options="course.name for course in courses | filter: {department_id:selectedDepartment.id}" 
             ng-change="courseChanged()">
         </select>
       </div>

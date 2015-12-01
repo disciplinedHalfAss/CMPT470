@@ -35,9 +35,6 @@ angular.module('mainApp')
   return o;
 }])
 
-
-
-
 .factory('books', [ '$http', function($http){
   var o = {};
   o.books = [];
@@ -53,7 +50,6 @@ angular.module('mainApp')
   };
   return o;
 }])
-
 
 .factory('selected', [function(){
   var o = {
@@ -129,10 +125,10 @@ angular.module('mainApp')
 
 	}
 	$scope.departmentChanged = function(){
-		
+
 	}
 	$scope.courseChanged = function(){
-		
+
 	}
 	$scope.sortOrder = function(){
 		
