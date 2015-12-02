@@ -1,0 +1,56 @@
+<!-- old search bars -->
+<!--<div class="form-group">-->
+<!--    <input type="text" class="form-control" placeholder="Author" />-->
+<!--    <input type="text" class="form-control" placeholder="Title" />-->
+<!--    <input type="text" class="form-control" placeholder="Keyword" />-->
+<!--    <input type="text" class="form-control" placeholder="ISBN" />-->
+<!--  <button class="btn btn-default" type="button" ng-click="signIn()">Find Books</button>-->
+<!--</div>-->
+<div class="row">
+  <br>
+  <div>
+    <strong>Username:</strong>
+    <div click-to-edit="user.username"></div>
+  </div>
+  <div>
+    <strong>First Name:</strong>
+    <div click-to-edit="user.firstname"></div>
+  </div>
+  <div>
+    <strong>Last Name:</strong>
+    <div click-to-edit="user.lastname"></div>
+  </div>
+  <div>
+    <strong>E-Mail:</strong>
+    <div click-to-edit="user.email"></div>
+  </div>
+  <div>
+    <strong>Phone:</strong>
+    <div click-to-edit="user.phone"></div>
+  </div>
+  <br>
+</div>
+
+<table class="table table-striped table-hover">
+  <tbody>
+    <tr>
+      <th>Author</th>
+      <th>Title</th>
+      <th>Keyword</th>
+      <th>ISBN</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+    <tr data-ng-repeat="book in data">
+      <td><div click-to-edit="book.Author"></div></td>
+      <td><div click-to-edit="book.Title"></div></td>
+      <td><div click-to-edit="book.Keyword"></div></td>
+      <td><div click-to-edit="book.ISBN"></div></td>
+      <td><div click-to-edit="book.Price"></div></td>
+      <td><button class="glyphicon glyphicon-remove" ng-click="removeBook($index)"></button></td>
+    </tr>
+  </tbody>
+</table>
+<div>
+  <button data-ng-click="addBook()" class="btn btn-default" type="button">Add Book</button>
+</div>

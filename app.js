@@ -178,6 +178,13 @@ angular.module('mainApp', ['ui.router'])
   }
   
   
+  $scope.remove=function(index){
+    var r = confirm("Are you sure you want to delete this item?");
+    if (r === true) {
+      books.books.splice(index,1);
+    } 
+  }
+  
 }])
 
 .controller('UserInfoController', ['$scope', 'users',function($scope, users){
