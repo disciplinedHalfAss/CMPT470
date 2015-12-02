@@ -14,9 +14,9 @@
           <h3>{{store.product.name}} <em class="pull-right">{{store.product.price | currency}}</em></h3>
 
           <!-- Image Gallery  -->
-          <div ng-controller="GalleryController as gallery"  ng-show="store.product.images.length"  align="center">
+          <div ng-controller="GalleryController as gallery" align="center">
             <div class="img-wrap">
-              <img ng-src="{{store.product.images[gallery.current]}}" height ="300"/>
+              <img ng-src="http://covers.openlibrary.org/b/isbn/{{store.product.isbn}}-M.jpg"/>
             </div>
             <ul class="img-thumbnails clearfix">
               <li class="small-image pull-left thumbnail" ng-repeat="image in store.product.images">
