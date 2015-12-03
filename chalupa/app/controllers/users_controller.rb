@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-	
+	# this must be removed in the production
+  # https://coderwall.com/p/8z7z3a/rails-4-solution-for-can-t-verify-csrf-token-authenticity-json-requests
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
+  
 	def index
 	    @users = User.all
       render :json => @users

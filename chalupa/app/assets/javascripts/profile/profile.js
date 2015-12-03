@@ -50,7 +50,7 @@ angular.module('mainApp')
   }
   
   $scope.save = function(){
-    angular.copy($scope.active_book, $scope.selected_book);
+    books.save($scope.active_book, $scope.active_book.id)
     $scope.clear();
     $scope.state = 'add';
   } 

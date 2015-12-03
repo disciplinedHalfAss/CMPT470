@@ -50,6 +50,12 @@ angular.module('mainApp')
       o.books.push(data);
     });
   };
+  o.save = function(book, id){
+    return $http({ url: '/books/' + id, method: 'PUT', data: book }).success(function(data){
+      console.log(data)
+      o.books[o.books.map(function(e){ e.id }).indexOf(id)] = data;
+    });
+  };
   return o;
 }])
 
