@@ -58,31 +58,20 @@ angular.module('mainApp')
     selectedUniversity: null,
     selectedDepartment: null,
     selectedCourse: null,
-    selectedSortOption: search.sortOptions[1],    
+    
+    predicate: 'created_at',
+    reverse: false,
+    order: null, 
   }
   return o;
 }])
 
-.controller('booksIndexCtrl', ['$scope', 'books', 'selected', function ($scope, books, selected) {
+.controller('booksIndexCtrl', ['$scope', 'books', 'selected', '$filter', function ($scope, books, selected, $filter) {
 	$scope.books = books.books;
-  $scope.selectedSortOption = selected.selectedSortOption
-  $scope.books_order_by = function(book){
-    console.log($scope.selectedSortOption.id)
-    switch ($scope.selectedSortOption.id){
-      case 0:
-        return book.price;
-        break;
-      case 1:
-        return -book.price;
-        break;
-      case 2:
-        return book.ownersRating;
-        break;
-      case 3:
-        break;
-      default:
-        return book.numberOfReviews;
-    } 
+  var orderBy = $filter('orderBy');
+  selected.order = function(){
+    console.log(selected.predicate)
+    $scope.books = orderBy($scope.books, selected.predicate, selected.reverse)
   }
 	
 	$scope.getStars = function(n){
@@ -106,7 +95,7 @@ angular.module('mainApp')
 	$scope.selectedUniversity = selected.selectedUniversity;
 	$scope.selectedDepartment = selected.selectedDepartment;
 	$scope.selectedCourse = selected.selectedCourse;
-	$scope.selectedSortOption = selected.selectedSortOption;
+  $scope.selectedSortOption = null;
 	
 	$scope.universityChanged = function(){
 
@@ -117,8 +106,26 @@ angular.module('mainApp')
 	$scope.courseChanged = function(){
 
 	}
-	$scope.sortOrder = function(){
-		console.log(selected.selectedSortOption.id)
+  
+	$scope.order = function(){
+    switch ($scope.selectedSortOption.id){
+      case 0:
+        selected.predicate = 'price';
+        selected.reverse = false;
+        break
+      case 1:
+        selected.predicate = 'price';
+        selected.reverse = true;
+        break
+      case 3:
+        selected.predicate = 'created_at';
+        selected.reverse = true;
+        break
+      default:
+        selected.predicate = 'created_at';
+        selected.reverse = true;
+    }
+    selected.order();
 	}
 }])
 

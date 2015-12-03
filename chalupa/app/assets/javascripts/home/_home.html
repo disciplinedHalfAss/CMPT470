@@ -30,7 +30,7 @@
         <select class="form-control input-sm search-select" 
             ng-model="selectedSortOption" 
             ng-options="option.name for option in sortOptions" 
-            ng-change="sortOrder()">
+            ng-change="order()">
         </select>
       </div>
     </div>
@@ -41,7 +41,7 @@
 <div class='container' ng-controller="booksIndexCtrl" id='bookCollection'>
   <div class='row'>
   
-  <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in books | orderBy:books_order_by">
+  <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in books">
     <div class="thumbnail">
     <div align ="center">
     <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg?default=http://orig05.deviantart.net/dad8/f/2012/317/b/2/batman_iphone_wallpaper_by_vmitchell85-d5kvlpv.jpg" height="300" />
