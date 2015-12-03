@@ -117,13 +117,9 @@ angular.module('mainApp')
         selected.predicate = 'price';
         selected.reverse = true;
         break
-      case 2:
-        selected.predicate = 'avg_user_rating';
-        selected.reverse = true;
-        break
       case 3:
-        selected.predicate = 'name';
-        selected.reverse = false;
+        selected.predicate = 'created_at';
+        selected.reverse = true;
         break
       default:
         selected.predicate = 'created_at';
