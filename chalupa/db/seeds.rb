@@ -43,6 +43,30 @@ books = [
     description: 'my love',
     is_sold: false
   },
+  {
+    course_id: 3,
+    user_id: 3,
+    isbn: '1451648537',    
+    name: 'here',
+    author: 'Walter Issac',
+    edition: 2,    
+    price: 12,
+    tags: 'I touch it every night',
+    description: 'I touch it every night',
+    is_sold: false
+  },
+  {
+    course_id: 3,
+    user_id: 3,
+    isbn: '081297381X',    
+    name: 'Black Swann',
+    author: 'dsad',
+    edition: 4,    
+    price: 23,
+    tags: 'never touched it',
+    description: 'I touch it every night',
+    is_sold: false
+  },
   
 ]
 
