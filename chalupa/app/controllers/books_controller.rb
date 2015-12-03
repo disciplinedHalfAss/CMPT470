@@ -4,7 +4,10 @@ class BooksController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   
 	def index
-	    @books = Book.all
+      course_id = params[:course_id]
+      @books = Book.where(course_id: course_id) if course_id
+      
+      @books = Book.limit(4) if @books.nil?
       render :json => @books
 	    #respond_with @books
 	end

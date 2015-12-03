@@ -40,8 +40,9 @@ angular.module('mainApp')
 .factory('books', [ '$http', function($http){
   var o = {};
   o.books = [];
-  o.getAll = function(){
-    return $http.get('/books.json').success(function(data){
+  o.getAll = function(options){
+    return $http({ url: '/books.json', method: 'GET', params: options}).success(function(data){
+      console.log(data)
       angular.copy(data, o.books);
     });
   };
@@ -85,7 +86,7 @@ angular.module('mainApp')
 	
 }])
 
-.controller('searchCtrl', ['$scope', 'search', 'selected', function ($scope, search, selected) {
+.controller('searchCtrl', ['$scope', 'search', 'selected', 'books', function ($scope, search, selected, books) {
   
   $scope.universities = search.universities
   $scope.departments = search.departments
@@ -104,7 +105,7 @@ angular.module('mainApp')
 
 	}
 	$scope.courseChanged = function(){
-
+    books.getAll({course_id: $scope.selectedCourse.id})
 	}
   
 	$scope.order = function(){
