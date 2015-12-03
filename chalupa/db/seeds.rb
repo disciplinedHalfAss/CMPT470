@@ -117,6 +117,36 @@ courses = [
   },
 ]
 
+users = [
+  {
+    email: 'ali@chalupa.com',
+    user_name: 'king',
+    university_id: 1,
+  },
+  {
+    email: 'archit@chalupa.com',
+    user_name: 'archit',
+    university_id: 1,
+  }
+]
+
+reviews = [
+  {
+    made_by: 1,
+    for: 2,
+    description: 'by ali for archit',
+    rating: 5,
+    show: true
+  },
+  {
+    made_by: 2,
+    for: 1,
+    description: 'by archit for ali',
+    rating: 5,
+    show: true
+  }
+]
+
 books.each do |book|
   Book.create(book)
 end
@@ -131,4 +161,12 @@ end
 
 courses.each do |course|
   Course.create(course)
+end
+
+users.each do |user|
+  User.create(user)
+end
+
+reviews.each do |review|
+  Review.create(review)
 end
