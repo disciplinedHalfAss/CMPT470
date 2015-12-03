@@ -9,29 +9,29 @@
             ng-change="universityChanged()">
         </select>
       </div>
-      <div class='col-xs-12 col-sm-2'>
+      <div class='col-xs-12 col-sm-2' ng-show="selectedUniversity">
         <select class="form-control input-sm search-select" 
             ng-model="selectedDepartment" 
-            ng-options="Department.name for Department in departments | filter: {university_id:selectedUniversity.id}" 
+            ng-options="Department.name for Department in departments" 
             ng-change="departmentChanged()">
         </select>
       </div>
-      <div class='col-xs-12 col-sm-2'>
+      <div class='col-xs-12 col-sm-2' ng-show="selectedDepartment">
         <select class="form-control input-sm search-select" 
             ng-model="selectedCourse" 
-            ng-options="course.name for course in courses | filter: {department_id:selectedDepartment.id}" 
+            ng-options="course.name for course in courses" 
             ng-change="courseChanged()">
         </select>
       </div>
-      <div class='col-xs-12 col-sm-3 col-sm-offset-1'>
-        <input type="text" class="form-control input-sm search-select" placeholder="Search">
-      </div>
-      <div class='col-xs-12 col-sm-2'>
+      <div class='col-xs-12 col-sm-2 pull-right'>
         <select class="form-control input-sm search-select" 
             ng-model="selectedSortOption" 
             ng-options="option.name for option in sortOptions" 
             ng-change="order()">
         </select>
+      </div>
+      <div class='col-xs-12 col-sm-3 pull-right'>
+        <input type="text" class="form-control input-sm search-select" placeholder="Search">
       </div>
     </div>
   </div>

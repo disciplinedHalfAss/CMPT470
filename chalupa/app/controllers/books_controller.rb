@@ -4,11 +4,35 @@ class BooksController < ApplicationController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   
 	def index
+      # find books based on course id
       course_id = params[:course_id]
       @books = Book.where(course_id: course_id) if course_id
       
+      # find books based on department id
+      department_id = params[:department_id]
+      if department_id
+        courses = Department.find_by(id: department_id).courses
+        @books = []
+        courses.each { |course| @books << course.books }
+      end
+      
+      # find books based on university id
+      university_id = params[:university_id]
+      if university_id
+        departments = University.find_by(id: university_id).departments
+  
+        courses = []
+        departments.each {|department| courses << department.courses }
+        courses = courses.flatten
+        
+        @books = []
+        courses.each { |course| @books << course.books }
+      end
+      
+      # if no option is provided
       @books = Book.limit(4) if @books.nil?
-      render :json => @books
+      # return the books found
+      render :json => @books.flatten
 	    #respond_with @books
 	end
 

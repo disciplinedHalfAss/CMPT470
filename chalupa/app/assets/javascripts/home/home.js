@@ -42,7 +42,6 @@ angular.module('mainApp')
   o.books = [];
   o.getAll = function(options){
     return $http({ url: '/books.json', method: 'GET', params: options}).success(function(data){
-      console.log(data)
       angular.copy(data, o.books);
     });
   };
@@ -71,7 +70,6 @@ angular.module('mainApp')
 	$scope.books = books.books;
   var orderBy = $filter('orderBy');
   selected.order = function(){
-    console.log(selected.predicate)
     $scope.books = orderBy($scope.books, selected.predicate, selected.reverse)
   }
 	
@@ -89,20 +87,29 @@ angular.module('mainApp')
 .controller('searchCtrl', ['$scope', 'search', 'selected', 'books', function ($scope, search, selected, books) {
   
   $scope.universities = search.universities
-  $scope.departments = search.departments
-  $scope.courses = search.courses
+  $scope.departments = null;
+  $scope.courses = null;
   $scope.sortOptions = search.sortOptions
 	
 	$scope.selectedUniversity = selected.selectedUniversity;
 	$scope.selectedDepartment = selected.selectedDepartment;
-	$scope.selectedCourse = selected.selectedCourse;
+	$scope.selectedCourse = selected.selectedDepartment;
   $scope.selectedSortOption = null;
 	
 	$scope.universityChanged = function(){
-
+    $scope.departments = search.departments.filter(function(e){
+      return e['university_id'] == $scope.selectedUniversity.id
+    });
+    $scope.selectedDepartment = null;
+    $scope.selectedCourse = null;
+    books.getAll({university_id: $scope.selectedUniversity.id})
 	}
 	$scope.departmentChanged = function(){
-
+    $scope.courses = search.courses.filter(function(e){
+      return e['department_id'] == $scope.selectedDepartment.id
+    });
+    $scope.selectedCourse = null;
+    books.getAll({department_id: $scope.selectedDepartment.id})
 	}
 	$scope.courseChanged = function(){
     books.getAll({course_id: $scope.selectedCourse.id})
