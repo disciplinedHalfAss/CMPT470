@@ -46,7 +46,7 @@
     <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg" alt="">
     <div class="caption">
       <h4 class="pull-right">{{book.price | currency:undefined:0}}</h4>
-      <h4><a href="#/book/{{$index}}">{{book.name}}</a></h4>
+      <h4><a href="#/book/{{$index}}">{{book.name | limitTo: 17}}{{book.name.length > 17 ? '...' : ''}}</a></h4>
       <div class="ratings">
       <h4>Owners Score</h4>
       <p class="pull-right">{{book.numberOfReviews}} reviews</p>
