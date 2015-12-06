@@ -1,5 +1,4 @@
 class Review < ActiveRecord::Base
-  belongs_to :made_by
-  belongs_to :for
+  belongs_to :user
   validates :description, presence: true
 end
