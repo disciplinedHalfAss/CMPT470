@@ -2,7 +2,9 @@ class ReviewsController < ApplicationController
 
 	def index
 	    @reviews = Review.all
-      	render :json => @reviews
+		r_u = []
+		@reviews.each { |r|  r_u<<[User.find_by(id: r.made_by)[:user_name], r.description] }
+      	render :json => r_u
 	    #respond_with @reviews
 	end
 

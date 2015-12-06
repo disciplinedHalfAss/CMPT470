@@ -103,11 +103,14 @@
               <ul ng-controller="revCtrl">
                 <h4>User Reviews:</h4>
                <li ng-repeat="review in reviews">
+                 
+                 <div><strong>By {{review[0]}}:</strong>
                   <blockquote>
-                    <strong>{{review.description}}</strong>
-                    Poop
-                    <cite class="clearfix">big poop</cite>
+                    <em>{{review[1]}}</em>
+                   
+                    <!-- <cite class="clearfix"></cite> -->
                   </blockquote>
+                 </div>
                 </li>
               </ul>
 
