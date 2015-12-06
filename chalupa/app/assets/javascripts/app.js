@@ -24,7 +24,12 @@ angular.module('mainApp', ['ui.router', 'templates'])
       .state('book', {
         url: '/book/{id}',
         templateUrl: 'book/_book.html',
-        controller: 'StoreController'
+        controller: 'StoreController',
+        resolve: {
+          bookPromise: ['reviewsFetch', function(reviewsFetch){
+            return reviewsFetch.getAll();
+          }],
+        }
       })
       
       .state('password', {

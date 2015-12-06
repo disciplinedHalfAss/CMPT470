@@ -6,6 +6,5 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true,
             length: { minimum: 8,
                       too_short: "must have at least %{count} characters" } # @sfu.ca or @ubc.ca are 7 characters each
-  validates :user_name, presence: true, length: { minimum: 3, too_short: "must have at least %{count} characters" }
-  validates :university_id, presence: true, uniqueness: true
+  #validates :user_name, presence: true, length: { minimum: 3, too_short: "must have at least %{count} characters" }
 end

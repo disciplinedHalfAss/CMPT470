@@ -35,7 +35,7 @@
                 <a href ng-click="tab.setTab(2)">Specs</a>
               </li>
               <li ng-class="{ active:tab.isSet(3) }">
-                <a href ng-click="tab.setTab(3)">Reviews</a>
+                <a href ng-click="tab.setTab(3)">Seller Reviews</a>
               </li>
             </ul>
 
@@ -61,7 +61,7 @@
             <div ng-show="tab.isSet(3)">
               <!--  Product Reviews List -->
               <ul>
-                <h4>Reviews</h4>
+                <h4>Preview:</h4>
                 <li ng-repeat="review in store.product.reviews">
                   <blockquote>
                     <strong>{{review.stars}} Stars</strong>
@@ -98,6 +98,20 @@
                   <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
                 </fieldset>
               </form>
+
+              <!-- Displaying reviews for seller-->
+              <ul ng-controller="revCtrl">
+                <h4>User Reviews:</h4>
+               <li ng-repeat="review in reviews">
+                  <blockquote>
+                    <strong>{{review.description}}</strong>
+                    Poop
+                    <cite class="clearfix">big poop</cite>
+                  </blockquote>
+                </li>
+              </ul>
+
+
             </div>
 
           </section>
