@@ -51,13 +51,23 @@ angular.module('mainApp', ['ui.router', 'templates', 'Devise'])
         .state('login', {
         url: '/login',
         templateUrl: 'authentication/_login.html',
-        controller: 'LoginController'
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+          }]
       })
       
         .state('register', {
         url: '/register',
         templateUrl: 'authentication/_register.html',
-        controller: 'RegisterController'
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+          }]
       })
 
        $urlRouterProvider.otherwise('home');
