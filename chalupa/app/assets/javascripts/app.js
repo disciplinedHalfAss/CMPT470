@@ -1,4 +1,4 @@
-angular.module('mainApp', ['ui.router', 'templates'])
+angular.module('mainApp', ['ui.router', 'templates', 'Devise'])
 
 .config([
 
@@ -63,9 +63,3 @@ angular.module('mainApp', ['ui.router', 'templates'])
        $urlRouterProvider.otherwise('home');
 }])
 
-.controller('navbarCtrl', ['$scope', function ($scope) {
-	$scope.index;
-	$scope.setIndex = function(i){
-		$scope.index = i;
-	}	
-}])
