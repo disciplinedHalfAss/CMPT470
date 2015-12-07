@@ -1,6 +1,8 @@
 <h2 align="center">add a new book</h2>
 <style>
-  .table-striped tbody { background-color: #B0B0B0 ; }
+  .table-striped tbody { background-color: #E8E8E8 ; }
+  #infobox:hover {background: #b0abd3;}
+  
 </style>
 <form class="form-horizontal" role="form">
   <div class="form-group">
@@ -68,7 +70,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr data-ng-repeat="book in books" ng-click="show(book.id)">    
+    <tr data-ng-repeat="book in books" ng-click="show(book.id)" id="infobox">    
       <td>{{book.name}}</td>
       <td>{{book.author}}</td>
       <td>{{book.isbn}}</td>
