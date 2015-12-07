@@ -120,12 +120,12 @@ courses = [
 users = [
   {
     email: 'ali@chalupa.com',
-    user_name: 'king',
+    username: 'king',
     university_id: 1,
   },
   {
     email: 'archit@chalupa.com',
-    user_name: 'archit',
+    username: 'archit',
     university_id: 1,
   }
 ]

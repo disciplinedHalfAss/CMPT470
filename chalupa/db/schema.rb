@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207042137) do
+ActiveRecord::Schema.define(version: 20151207062238) do
 
   create_table "books", force: :cascade do |t|
     t.integer  "course_id"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20151207042137) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "phone_number"
+    t.integer  "university_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
