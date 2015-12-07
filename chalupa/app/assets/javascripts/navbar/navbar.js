@@ -4,7 +4,7 @@ angular.module('mainApp')
 .controller('navbarCtrl', ['$scope', 'Auth' , function ($scope, Auth) {
 	$scope.index;
 	
-  $scope.setIndex = function(i){
+  	$scope.setIndex = function(i){
 		$scope.index = i;
 	}
 

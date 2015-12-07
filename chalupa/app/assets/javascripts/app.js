@@ -45,6 +45,11 @@ angular.module('mainApp', ['ui.router', 'templates', 'Devise'])
             templateUrl: 'profile/_new_book.html',
             controller: 'BookIndexController'
           }
+        },
+        resolve: {
+          bookPromise: ['books', function(books){
+            return books.getAll();
+          }]
         }
       })
       

@@ -29,11 +29,11 @@ class BooksController < ApplicationController
         courses.each { |course| @books << course.books }
       end
       
-      user_id = params[:university_id]
+      user_id = params[:user_id]
       @books = Book.where(user_id: user_id) if user_id
       
       # if no option is provided
-      @books = Book.limit(4) if @books.nil?
+      @books = Book.all if @books.nil?
       # return the books found
       render :json => @books.flatten
 	    #respond_with @books
