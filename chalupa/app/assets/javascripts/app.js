@@ -1,4 +1,4 @@
-angular.module('mainApp', ['ui.router', 'templates'])
+angular.module('mainApp', ['ui.router', 'templates', 'Devise'])
 
 .config([
 
@@ -50,27 +50,48 @@ angular.module('mainApp', ['ui.router', 'templates'])
             templateUrl: 'profile/_new_book.html',
             controller: 'BookIndexController'
           }
+        },
+        resolve: {
+          bookPromise: ['books', function(books){
+            return books.getAll();
+          }]
         }
       })
       
         .state('login', {
         url: '/login',
         templateUrl: 'authentication/_login.html',
-        controller: 'LoginController'
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+          }]
       })
       
         .state('register', {
         url: '/register',
         templateUrl: 'authentication/_register.html',
-        controller: 'RegisterController'
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.currentUser().then(function (){
+            $state.go('home');
+          })
+          }]
       })
+
+        .state('logout', {
+        url: '/home',
+        templateUrl: 'home/_home.html',
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.logout().then(function (){
+            $state.go('home');
+          })
+          }]
+      })
+
 
        $urlRouterProvider.otherwise('home');
 }])
 
-.controller('navbarCtrl', ['$scope', function ($scope) {
-	$scope.index;
-	$scope.setIndex = function(i){
-		$scope.index = i;
-	}	
-}])

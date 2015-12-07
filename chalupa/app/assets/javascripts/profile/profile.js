@@ -1,9 +1,8 @@
 angular.module('mainApp')
 
 
-.controller('BookIndexController', ['books', '$scope', function(books, $scope){
+.controller('BookIndexController', ['books', '$scope', 'Auth', function(books, $scope, Auth){
   $scope.state = 'add';
-  $scope.books = books.books;
   $scope.active_book = {
     name: null,
     author: null,
@@ -12,7 +11,16 @@ angular.module('mainApp')
     price: null,
     tags: null,
     description: null,
+    university_id: null,
+    user_id: null,
   }
+  Auth.currentUser().then(function (user){
+    books.getAll({user_id: user.id});
+    $scope.books = books.books;
+    $scope.active_book.university_id = 1;
+    $scope.active_book.user_id = user.id;
+    
+	});
   $scope.addBook = function(book){
     if( (!book.isbn && (!book.name || !book.author || !book.edition) ) || !book.price ) { return; }
     books.create(book);
@@ -56,42 +64,18 @@ angular.module('mainApp')
   } 
 }])
 
-.controller('UserInfoController', ['$scope', 'users',function($scope, users){
-  $scope.logged_in_user = users.logged_in_user;
+.controller('UserInfoController', ['$scope', 'Auth',function($scope, Auth){
+  Auth.currentUser().then(function (user){
+  		$scope.logged_in_user = user;
+	});
+  
   $scope.state = 'saved'
   $scope.save = function(){
-    $scope.state = 'saved'
+    
+    Auth.UpdateResource
   }
   $scope.edit = function(){
     $scope.state = 'editing'
   }
   
-}])
-
-
-.factory('users',[function(){
-  var o = {
-    users: [
-      {
-        username: 'Archit_the_pn_master',
-        name: 'san',
-        email: 'manga@pn.com',
-        phone_number: 69696969,
-        university: 'dead mountain',
-        password: 123,
-        facebook: 'atpm', 
-      },
-      {
-        username: 'your magisty',
-        name: 'ali',
-        email: 'king@word.com',
-        phone_number: 1000000000,
-        university: 'MIT',
-        password: 321,
-        facebook: 'lord', 
-      }
-    ],
-    logged_in_user: null,
-  }
-  return o;
 }])
