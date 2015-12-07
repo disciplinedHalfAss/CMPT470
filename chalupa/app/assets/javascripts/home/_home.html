@@ -1,0 +1,66 @@
+<!-- home -->
+<div id="options">
+  <div class='container-fluid' ng-controller="searchCtrl">
+    <div class='row'>
+      <div class='col-xs-12 col-sm-2'>
+        <select class="form-control input-sm search-select"
+            ng-model="selectedUniversity"
+            ng-options="university.name for university in universities"
+            ng-change="universityChanged()">
+        </select>
+      </div>
+      <div class='col-xs-12 col-sm-2' ng-show="selectedUniversity">
+        <select class="form-control input-sm search-select"
+            ng-model="selectedDepartment"
+            ng-options="Department.name for Department in departments"
+            ng-change="departmentChanged()">
+        </select>
+      </div>
+      <div class='col-xs-12 col-sm-2' ng-show="selectedDepartment">
+        <select class="form-control input-sm search-select"
+            ng-model="selectedCourse"
+            ng-options="course.name for course in courses"
+            ng-change="courseChanged()">
+        </select>
+      </div>
+      <div class='col-xs-12 col-sm-2 pull-right'>
+        <select class="form-control input-sm search-select"
+            ng-model="selectedSortOption"
+            ng-options="option.name for option in sortOptions"
+            ng-change="order()">
+        </select>
+      </div>
+      <div class='col-xs-12 col-sm-3 pull-right'>
+        <input type="text" class="form-control input-sm search-select" placeholder="Search">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- collection -->
+<div class='container' ng-controller="booksIndexCtrl" id='bookCollection'>
+  <div class='row'>
+
+  <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3' ng-repeat="book in books">
+    <div class="thumbnail">
+    <div align ="center">
+    <img src="http://covers.openlibrary.org/b/isbn/{{book.isbn}}-M.jpg?default=https://dl.dropbox.com/s/gyoeoecg6rkshn2/default.png?dl=0" height="300" />
+    <!-- Old default:  ?default=http://orig05.deviantart.net/dad8/f/2012/317/b/2/batman_iphone_wallpaper_by_vmitchell85-d5kvlpv.jpg -->
+    </div>
+    <div class="caption">
+      <h4 class="pull-right">{{book.price | currency:undefined:0}}</h4>
+      <h4><a href="#/book/{{1 * book.id - 1}}">{{book.name | limitTo: 17}}{{book.name.length > 17 ? '...' : ''}}</a></h4>
+      <div class="ratings">
+      <h4>Owners Score</h4>
+      <p class="pull-right">{{book.numberOfReviews}} reviews</p>
+      <p>
+        <span class="glyphicon glyphicon-star" ng-repeat="i in getStars(book.ownersRating) track by $index"></span>
+        <span class="glyphicon glyphicon-star-empty" ng-repeat="i in getEmptyStars(book.ownersRating) track by $index"></span>
+      </p>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  </div>
+</div>

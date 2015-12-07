@@ -1,0 +1,24 @@
+{
+  "name": "chalupa",
+  "authors": [
+    "alireza-a <alirezaa@sfu.ca>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.6",
+    "AngularDevise": "angular-devise#~1.1.0"
+  }
+}

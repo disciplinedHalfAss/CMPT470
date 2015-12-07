@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="card card-container">
+        <p id="profile-name" class="profile-name-card"></p>
+        <form class="form-signin" ng-submit="login()">
+            <span id="reauth-email" class="reauth-email"></span>
+            
+            <input type="email" id="inputEmail" class="form-control" 
+            placeholder="Email address" required autofocus ng-model="user.email">
+            
+            <input type="password" id="inputPassword" class="form-control"
+             placeholder="Password" required ng-model="user.password">
+            
+            <div id="remember" class="checkbox">
+            </div>
+            <button class="btn btn-lg btn-primary 
+            btn-block btn-signin" type="submit" ng-click="signin()">Sign in</button>
+        </form><!-- /form -->
+        <a href="#" class="forgot-password">
+            Forgot the password?
+        </a>
+    </div><!-- /card-container -->
+</div><!-- /container -->

@@ -1,0 +1,58 @@
+<h2 align="center">{{logged_in_user.username}}</h2>     
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">First:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="first-name"
+      placeholder="your first name" ng-model="logged_in_user.first_name"
+      ng-disabled="state!='editing'">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">Last:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="last-name"
+      placeholder="your last name" ng-model="logged_in_user.last_name"
+      ng-disabled="state!='editing'">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label>
+    <div class="col-sm-10"> 
+      <input type="email" class="form-control" id="email"
+      placeholder="Enter your email" ng-model="logged_in_user.email"
+      ng-disabled="true">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="phoneNumber">phone:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="phoneNumber"
+      placeholder="Enter phene number" ng-model="logged_in_user.phone_number"
+      ng-disabled="state!='editing'">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="fb">Facebook:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="fb"
+      placeholder="Enter facebook id" ng-model="logged_in_user.facebook"
+      ng-disabled="state!='editing'">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-4 col-sm-4">
+      
+      <button type="save"
+      class="btn btn-success btn-block" 
+      ng-click="save()"
+      ng-show="state=='editing'">Save Changes</button>
+      
+      <button type="edit" 
+      class="btn btn-primary btn-block"
+      ng-click="edit()"
+      ng-show="state=='saved'">Edit</button>
+      
+    </div>
+  </div>
+</form>
