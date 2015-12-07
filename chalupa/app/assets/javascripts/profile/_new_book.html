@@ -2,7 +2,8 @@
 <style>
   .table-striped tbody { background-color: #E8E8E8 ; }
   #infobox:hover {background: #b0abd3;}
-  
+  .ng-invalid.ng-dirty {border-color: darkred;}
+  .ng-valid.ng-dirty {border-color: green;}
 </style>
 <form class="form-horizontal" role="form">
   <div class="form-group">
@@ -22,7 +23,7 @@
     </div>
     <div class="col-xs-4">
       <input type="text" class="form-control"
-      data-ng-model="active_book.isbn" placeholder="isbn"/>
+      data-ng-model="active_book.isbn" placeholder="isbn 10 or 13 chars"  ng-minlength="10" ng-required="true"/>
     </div>
     <div class="col-xs-2">
       <input type="text" class="form-control"
