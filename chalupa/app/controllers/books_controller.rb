@@ -20,7 +20,6 @@ class BooksController < ApplicationController
       university_id = params[:university_id]
       if university_id
         departments = University.find_by(id: university_id).departments
-  
         courses = []
         departments.each {|department| courses << department.courses }
         courses = courses.flatten
@@ -33,7 +32,7 @@ class BooksController < ApplicationController
       @books = Book.where(user_id: user_id) if user_id
       
       # if no option is provided
-      @books = Book.limit(4) if @books.nil?
+      @books = Book.all if @books.nil?
       # return the books found
       render :json => @books.flatten
 	    #respond_with @books

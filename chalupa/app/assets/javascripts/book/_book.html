@@ -4,7 +4,6 @@
       <!--  Store Header  -->
       <header>
         <h1 class="text-center">The Book</h1>
-        {{store.pooh}}
       </header>
 
       <!--  Products Container  -->
@@ -52,9 +51,6 @@
               <blockquote>ISBN: {{store.product.isbn}}</blockquote>
               <blockquote>Edition: {{store.product.edition}}</blockquote>
               <blockquote>Price: {{store.product.price | currency}}</blockquote>
-
-
-
             </div>
 
             <!--  Review Tabs Content  -->
@@ -85,7 +81,7 @@
                 <h4>Submit a Review</h4>
                 <fieldset class="form-group">
                   <select ng-model="reviewCtrl.review.stars" class="form-control" ng-options="stars for stars in [5,4,3,2,1]" title="Stars">
-                    <option value>Rate the Product</option>
+                    <option value>Rate the Seller</option>
                   </select>
                 </fieldset>
                 <fieldset class="form-group">
