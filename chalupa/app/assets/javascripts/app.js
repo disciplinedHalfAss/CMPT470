@@ -70,6 +70,18 @@ angular.module('mainApp', ['ui.router', 'templates', 'Devise'])
           }]
       })
 
+        .state('logout', {
+        url: '/home',
+        templateUrl: 'home/_home.html',
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'Auth', function($state, Auth) {
+          Auth.logout().then(function (){
+            $state.go('home');
+          })
+          }]
+      })
+
+
        $urlRouterProvider.otherwise('home');
 }])
 
