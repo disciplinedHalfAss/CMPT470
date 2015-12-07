@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="home"><span><img src="./assets/bt1.png" height="28" width="auto" aline='middle'></img></span> Chalupa Batman</a>
+        <a class="navbar-brand" ui-sref="home" ng-click="setIndex(-1)"><span><img src="./assets/bt1.png" height="28" width="auto" aline='middle'></img></span> Chalupa Batman</a>
       </div>
     
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,7 +17,7 @@
         <li ng-hide="signedIn()" ng-click="setIndex(0)" ng-class="(index==0) ? 'active' : ''"><a ui-sref="login">Login</a></li>
         <li ng-hide="signedIn()"ng-click="setIndex(1)" ng-class="(index==1) ? 'active' : ''"><a ui-sref="register">Register</a></li>
         <li ng-show="signedIn()" ng-click="setIndex(2)" ng-class="(index==2) ? 'active' : ''"><a ui-sref="profile">{{ user.username }}</a></li>
-        <li ng-show="signedIn()" ng-click="setIndex(3)" ng-class="(index==2) ? 'active' : ''"><a ui-sref="logout"> Log Out</a></li>
+        <li ng-show="signedIn()" ng-click="setIndex(3)" ng-class="(index==3) ? 'active' : ''"><a ui-sref="logout"> Log Out</a></li>
 
         </ul>
       </div><!-- /.navbar-collapse -->
