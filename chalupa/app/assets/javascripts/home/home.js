@@ -51,7 +51,7 @@ angular.module('mainApp')
     });
   };
   o.save = function(book, id){
-    return $http({ url: '/books/' + id, method: 'PUT', data: book }).success(function(data){
+    return $http({ url: '/books/' + (id-1) , method: 'PUT', data: book }).success(function(data){
       console.log(data)
       o.books[o.books.map(function(e){ e.id }).indexOf(id)] = data;
     });
@@ -87,7 +87,7 @@ angular.module('mainApp')
 		if (n) { return new Array(5-n); }
     return new Array(5)
 	}
-	
+
 }])
 
 .controller('searchCtrl', ['$scope', 'search', 'selected', 'books', function ($scope, search, selected, books) {
