@@ -45,10 +45,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
-  #config.vm.provision "chef_solo" do |chef|
-  #  chef.cookbooks_path = "chef/cookbooks"
-  #  chef.add_recipe "baseconfig"
-  #end
+  config.vm.provision "chef_solo" do |chef|
+    chef.cookbooks_path = "chef/cookbooks"
+    chef.add_recipe "baseconfig"
+  end
 
   # Enable provisioning with Fabric. Before using, you must (on your machine,
   # outside the VM) have Fabric and the vagrant-fabric plugin installed:
