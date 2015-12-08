@@ -1,6 +1,13 @@
 # Chalupa Books
-- Users can post textbooks they wish to sell and view books put up by others
-- Books posted by the user can be seen and modified on their profile page
+The best place for students to trade textbooks!
+http://localhost:3000
+
+
+### Chalupa Guide
+- Click on your name after registration to post books you want to sell
+- You can edit details of your posts by clicking the listing on your profile page
+- More information about books put up by others can be found by clicking them
+- Required fields with character restrictions will have a red border
 
 
 ### Features In Progress
@@ -14,12 +21,16 @@
 - More intuitive user experience
 - Direct messaging service
 - Uploading book images from Users
+- Administrator view
 
 
 ### Technologies Used
 - Ruby on Rails
 - Angular.js
 - Bootstrap
+- Vagrant & Chef
+- PostgreSQL
+- WEBrick
 
 
 ### References/Resources
