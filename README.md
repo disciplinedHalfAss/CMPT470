@@ -1,13 +1,42 @@
-Update - November 29 2015
-"Issues loading the page"
-The Angular.js script does not run locally on Chrome because it needs to be loaded through a server.
-If you wish to view it right now without setting up Vagrant and Apache, open it with Firefox.
-For more information visit: http://www.dreamincode.net/forums/topic/372717-angularjs-code-works-in-firefox-but-not-in-googlechrome-or-ie/
+# Chalupa Books
+The best place for students to trade textbooks!
+http://localhost:3000
 
-Ignore the front end stuff
 
-Only modify the poster if you would like
+### Chalupa Guide
+- Click on your name after registration to post books you want to sell
+- You can edit details of your posts by clicking the listing on your profile page
+- More information about books put up by others can be found by clicking them
+- Required fields with character restrictions will have a red border
 
-Boxes on the poster are placeholders for the screenshots
 
-Always ask why
+### Features In Progress
+- Submission of reviews for a user on their book post
+- Viewing reviews specific to that user on their post
+- Editing profile information
+
+
+### Future Features
+- Better filtering
+- More intuitive user experience
+- Direct messaging service
+- Uploading book images from Users
+- Administrator view
+
+
+### Technologies Used
+- Ruby on Rails
+- Angular.js
+- Bootstrap
+- Vagrant & Chef
+- PostgreSQL
+- WEBrick
+
+
+### References/Resources
+- Shaping up with Angular.js
+- Thinkster
+- Stack Overflow
+- W3Schools
+- OpenLibrary api for book covers
+- Device gem for login
