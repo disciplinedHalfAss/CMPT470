@@ -9,13 +9,20 @@
 - Editing profile information
 
 
-## Technologies used
+### Future Features
+- Better filtering
+- More intuitive user experience
+- Direct messaging service
+- Uploading book images from Users
+
+
+### Technologies Used
 - Ruby on Rails
 - Angular.js
 - Bootstrap
 
 
-## References/Resources
+### References/Resources
 - Shaping up with Angular.js
 - Thinkster
 - Stack Overflow
